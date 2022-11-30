@@ -21,11 +21,24 @@ class Cart
      */
     public function addProduct($product, $quantity)
     {
-       
-        $cartItem = new CartItem($product, 1);
-        array_push($this->items, $cartItem);
 
-        return $cartItem;
+        $id = $product->getId();
+        
+
+        if (isset($this->items[$id])) {
+            $this->items[$id]->increaseQuantity();
+        } else {
+            $cartItem = new CartItem($product, 1);
+            array_push($this->items, $cartItem);
+    
+            return $cartItem;
+        }
+       
+        //Kolla upp array search - det är samma sak som array-method .find
+
+       
+
+        
 
     }
 
