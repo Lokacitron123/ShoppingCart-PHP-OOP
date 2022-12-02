@@ -19,7 +19,7 @@ class Cart
      VG: Om produkten redan finns i kundvagnen
      skall istället quantity på cartitem ökas.
      */
-    public function addProduct($product, $quantity)
+    public function addProduct($product)
     {
 
         $id = $product->getId();
@@ -29,16 +29,12 @@ class Cart
             $this->items[$id]->increaseQuantity();
         } else {
             $cartItem = new CartItem($product, 1);
-            array_push($this->items, $cartItem);
-    
+            $this->items[$product->getId()] = $cartItem;
             return $cartItem;
         }
        
         //Kolla upp array search - det är samma sak som array-method .find
 
-       
-
-        
 
     }
 
@@ -46,9 +42,7 @@ class Cart
     //Skall ta bort en produkt ur kundvagnen (använd unset())
     public function removeProduct($product)
     {
-         unset($this -> items[0]);
-         return $this -> items;
-
+         unset($this ->items[$product->getId()]);
 
     }
 
@@ -56,6 +50,7 @@ class Cart
     //OBS: Ej antalet unika produkter
     public function getTotalQuantity()
     {   
+
         $i = 0;
         foreach($this->items as $item) {
             $i = $i + $item->getQuantity();

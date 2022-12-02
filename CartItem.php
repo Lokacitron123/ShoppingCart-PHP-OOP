@@ -33,6 +33,7 @@ class CartItem
             
         } else {
             echo "Kan inte lägga till. Slut i lager";
+            
         }
 
         

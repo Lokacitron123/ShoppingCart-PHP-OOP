@@ -89,3 +89,4 @@ foreach ($cart->getItems() as $item) {
 
 echo "<h3>Lägger till en fjärde M2 SSD fast det bara finns 3 i lager: </h3>";
 $cartItem2->increaseQuantity(); //Skall skriva ut "Kan inte lägga till. Slut i lager"
+
